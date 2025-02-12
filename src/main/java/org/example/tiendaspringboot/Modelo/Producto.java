@@ -1,4 +1,4 @@
-package org.example.tiendaspringboot;
+package org.example.tiendaspringboot.Modelo;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

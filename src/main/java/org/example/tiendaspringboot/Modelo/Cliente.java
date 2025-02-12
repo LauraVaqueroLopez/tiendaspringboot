@@ -1,4 +1,4 @@
-package org.example.tiendaspringboot;
+package org.example.tiendaspringboot.Modelo;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -44,7 +44,7 @@ public class Cliente {
     private String domicilio;
 
     @OneToMany(mappedBy = "cliente")
-    private Set<org.example.tiendaspringboot.Historial> historials = new LinkedHashSet<>();
+    private Set<Historial> historials = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -102,11 +102,11 @@ public class Cliente {
         this.domicilio = domicilio;
     }
 
-    public Set<org.example.tiendaspringboot.Historial> getHistorials() {
+    public Set<Historial> getHistorials() {
         return historials;
     }
 
-    public void setHistorials(Set<org.example.tiendaspringboot.Historial> historials) {
+    public void setHistorials(Set<Historial> historials) {
         this.historials = historials;
     }
 

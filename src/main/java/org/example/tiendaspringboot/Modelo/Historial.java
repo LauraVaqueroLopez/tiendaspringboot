@@ -1,4 +1,4 @@
-package org.example.tiendaspringboot;
+package org.example.tiendaspringboot.Modelo;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -27,7 +27,7 @@ public class Historial {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "producto_id", nullable = false)
-    private org.example.tiendaspringboot.Producto producto;
+    private Producto producto;
 
     @NotNull
     @Column(name = "fecha_compra", nullable = false)
@@ -62,11 +62,11 @@ public class Historial {
         this.cliente = cliente;
     }
 
-    public org.example.tiendaspringboot.Producto getProducto() {
+    public Producto getProducto() {
         return producto;
     }
 
-    public void setProducto(org.example.tiendaspringboot.Producto producto) {
+    public void setProducto(Producto producto) {
         this.producto = producto;
     }
 
