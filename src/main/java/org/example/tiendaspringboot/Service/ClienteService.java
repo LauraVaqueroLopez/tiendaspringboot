@@ -1,15 +1,11 @@
 package org.example.tiendaspringboot.Service;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.example.tiendaspringboot.Modelo.Cliente;
 import org.example.tiendaspringboot.Repositorio.ClienteRepository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-
-@Service
 public class ClienteService {
     private final ClienteRepository clienteRepository;
 
