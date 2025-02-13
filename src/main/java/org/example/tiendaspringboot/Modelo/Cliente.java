@@ -1,7 +1,9 @@
 package org.example.tiendaspringboot.Modelo;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import java.util.LinkedHashSet;
@@ -18,29 +20,38 @@ public class Cliente {
     @Size(max = 50)
     @NotNull
     @Column(name = "nombre", nullable = false, length = 50)
+    @NotBlank(message = "el campo nombre no puede estar vacio")
+    @Pattern(regexp = "^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$", message ="El nombre del cliente solo debe contener caracteres alfabeticos")
     private String nombre;
 
     @Size(max = 50)
     @NotNull
     @Column(name = "apellido", nullable = false, length = 50)
+    @NotBlank(message = "el campo nombre no puede estar vacio")
+    @Pattern(regexp = "^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$", message ="El nombre del cliente solo debe contener caracteres alfabeticos")
     private String apellido;
 
     @Size(max = 50)
     @NotNull
     @Column(name = "nickname", nullable = false, length = 50)
+    @NotBlank(message = "el campo nombre no puede estar vacio")
     private String nickname;
 
     @Size(max = 255)
     @NotNull
     @Column(name = "password", nullable = false)
+    @NotBlank(message = "el campo nombre no puede estar vacio")
+    @Pattern(regexp = "^[a-zA-Z0-9]$", message ="la password debe contener entre 4 y 12 caracteres alfanumericos")
     private String password;
 
     @Size(max = 15)
     @Column(name = "telefono", length = 15)
+    @NotBlank(message = "el campo nombre no puede estar vacio")
     private String telefono;
 
     @Size(max = 100)
     @Column(name = "domicilio", length = 100)
+    @NotBlank(message = "el campo nombre no puede estar vacio")
     private String domicilio;
 
     @OneToMany(mappedBy = "cliente")

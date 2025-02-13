@@ -1,7 +1,9 @@
 package org.example.tiendaspringboot.Modelo;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
@@ -19,14 +21,19 @@ public class Producto {
     @Size(max = 100)
     @NotNull
     @Column(name = "nombre", nullable = false, length = 100)
+    @NotBlank(message = "el campo nombre no puede estar vacio")
+    @Pattern(regexp = "^[a-zA-Z0-9]+$", message ="El nombre del producto solo debe contener caracteres alfanumericos")
     private String nombre;
 
     @Lob
     @Column(name = "descripcion")
+    @NotBlank(message = "el campo descripcion no puede estar vacio")
     private String descripcion;
 
     @NotNull
     @Column(name = "precio", nullable = false, precision = 10, scale = 2)
+    @NotBlank(message = "el campo precio no puede estar vacio")
+    @Pattern(regexp = "^\\d+(\\.\\d{1,2})?$", message ="El precio debe ser positivo")
     private BigDecimal precio;
 
     @NotNull
