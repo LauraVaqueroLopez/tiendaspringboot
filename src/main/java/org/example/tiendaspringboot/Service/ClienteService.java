@@ -2,11 +2,16 @@ package org.example.tiendaspringboot.Service;
 
 import org.example.tiendaspringboot.Modelo.Cliente;
 import org.example.tiendaspringboot.Repositorio.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ClienteService {
+
+    @Autowired
     private final ClienteRepository clienteRepository;
 
     public ClienteService(ClienteRepository clienteRepository) {
