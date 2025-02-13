@@ -12,25 +12,21 @@ import java.util.Optional;
 public class ProductoService {
 
     @Autowired
-    private ProductosRepository productosRepository;
+    private ProductosRepository productoRepository;
 
-    public ProductoService(ProductosRepository productosRepository) {
-        this.productosRepository = productosRepository;
+    public List<Producto> listarTodos() {
+        return productoRepository.findAll();
     }
 
-    public List<Producto> getAll() {
-        return productosRepository.findAll();
-    }
-
-    public Optional<Producto> getById(int id) {
-        return productosRepository.findById(id);
+    public Optional<Producto> buscarPorId(Integer id) {
+        return productoRepository.findById(id);
     }
 
     public Producto guardar(Producto producto) {
-        return productosRepository.save(producto);
+        return productoRepository.save(producto);
     }
 
-    public void eliminar(int id) {
-        productosRepository.deleteById(id);
+    public void eliminar(Integer id) {
+        productoRepository.deleteById(id);
     }
 }
