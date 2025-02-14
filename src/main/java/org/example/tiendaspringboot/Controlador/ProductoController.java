@@ -52,7 +52,9 @@ public class ProductoController {
             p.setNombre(producto.getNombre());
             p.setDescripcion(producto.getDescripcion());
             p.setPrecio(producto.getPrecio());
-            return ResponseEntity.ok().body(p);
+            p.setStock(producto.getStock());
+            Producto actualizado = productoService.guardar(p);
+            return ResponseEntity.ok(actualizado);
         }).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

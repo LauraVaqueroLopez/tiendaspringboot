@@ -58,6 +58,10 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private Set<Historial> historials = new LinkedHashSet<>();
 
+    public Cliente(){
+
+    }
+
     public Integer getId() {
         return id;
     }
