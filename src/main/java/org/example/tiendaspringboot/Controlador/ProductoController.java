@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/productos")
@@ -41,10 +42,21 @@ public class ProductoController {
     }
 
     @PostMapping
-    public ResponseEntity<Producto> guardar(@Valid @RequestBody Producto producto) {
-        Producto nuevoProducto = productoService.guardar(producto);
-        return ResponseEntity.ok().body(nuevoProducto);
+    public ResponseEntity<?> guardar(@Valid @RequestBody Producto producto) {
+
+        Optional<Producto> productoExistente = productoService.buscarPorNombre(producto.getNombre());
+
+        if (productoExistente.isPresent()) {
+            // Devuelve un mensaje de error detallado si el nombre ya existe
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("error", "El producto con el nombre '" + producto.getNombre() + "' ya existe.");
+            return ResponseEntity.badRequest().body(errorResponse);
+        } else {
+            Producto nuevoProducto = productoService.guardar(producto);
+            return ResponseEntity.ok().body(nuevoProducto);
+        }
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Producto> actualizar(@PathVariable Integer id, @Valid @RequestBody Producto producto) {

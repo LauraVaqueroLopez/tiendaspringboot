@@ -29,4 +29,8 @@ public class ProductoService {
     public void eliminar(Integer id) {
         productoRepository.deleteById(id);
     }
+
+    public Optional<Producto> buscarPorNombre(String nombre) {
+        return productoRepository.findByNombre(nombre);
+    }
 }
