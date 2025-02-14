@@ -20,7 +20,7 @@ public class Producto {
 
     @Size(max = 100)
     @NotNull
-    @Column(name = "nombre", nullable = false, length = 100, unique = true) // Restricción de unicidad
+    @Column(name = "nombre", nullable = false, length = 100, unique = true)
     @NotBlank(message = "El campo nombre no puede estar vacío")
     @Pattern(regexp = "^[a-zA-Z0-9]+$", message = "El nombre del producto solo debe contener caracteres alfanuméricos")
     private String nombre;
@@ -43,13 +43,10 @@ public class Producto {
     @OneToMany(mappedBy = "producto")
     private Set<Historial> historials = new LinkedHashSet<>();
 
-    // Método para verificar las condiciones del precio y modificar la descripción
     public void actualizarDescripcionConLiteral() {
         if (precio.compareTo(new BigDecimal("10")) < 0) {
-            // Si el precio es menor a 10, agregar "producto de oferta"
             this.descripcion = this.descripcion + " (producto de oferta)";
         } else if (precio.compareTo(new BigDecimal("200")) > 0) {
-            // Si el precio es mayor a 200, agregar "producto de calidad"
             this.descripcion = this.descripcion + " (producto de calidad)";
         }
     }
@@ -84,7 +81,7 @@ public class Producto {
 
     public void setPrecio(BigDecimal precio) {
         this.precio = precio;
-        actualizarDescripcionConLiteral(); // Actualizar la descripción al establecer el precio
+        actualizarDescripcionConLiteral();
     }
 
     public Integer getStock() {
