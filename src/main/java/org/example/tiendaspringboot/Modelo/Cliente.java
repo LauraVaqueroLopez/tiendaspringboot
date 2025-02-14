@@ -27,31 +27,32 @@ public class Cliente {
     @Size(max = 50)
     @NotNull
     @Column(name = "apellido", nullable = false, length = 50)
-    @NotBlank(message = "el campo nombre no puede estar vacio")
-    @Pattern(regexp = "^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$", message ="El nombre del cliente solo debe contener caracteres alfabeticos")
+    @NotBlank(message = "el campo apellido no puede estar vacio")
+    @Pattern(regexp = "^[a-zA-ZÁÉÍÓÚáéíóúÑñ]+$", message ="El apellido del cliente solo debe contener caracteres alfabeticos")
     private String apellido;
 
     @Size(max = 50)
     @NotNull
     @Column(name = "nickname", nullable = false, length = 50)
-    @NotBlank(message = "el campo nombre no puede estar vacio")
+    @NotBlank(message = "el campo nickname no puede estar vacio")
     private String nickname;
 
     @Size(max = 255)
     @NotNull
     @Column(name = "password", nullable = false)
-    @NotBlank(message = "el campo nombre no puede estar vacio")
-    @Pattern(regexp = "^[a-zA-Z0-9]$", message ="la password debe contener entre 4 y 12 caracteres alfanumericos")
+    @NotBlank(message = "el campo password no puede estar vacio")
+    @Pattern(regexp = "^[a-zA-Z0-9]{6,}$", message ="la password debe contener entre 4 y 12 caracteres alfanumericos")
     private String password;
 
     @Size(max = 15)
     @Column(name = "telefono", length = 15)
-    @NotBlank(message = "el campo nombre no puede estar vacio")
+    @NotBlank(message = "el campo telefono no puede estar vacio")
+    @Pattern(regexp = "^[69]\\d{8}$", message ="El telefono debe tener 9 digitos que empiecen por 6 o 9.")
     private String telefono;
 
     @Size(max = 100)
     @Column(name = "domicilio", length = 100)
-    @NotBlank(message = "el campo nombre no puede estar vacio")
+    @NotBlank(message = "el campo domicilio no puede estar vacio")
     private String domicilio;
 
     @OneToMany(mappedBy = "cliente")
