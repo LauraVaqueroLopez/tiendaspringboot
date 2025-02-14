@@ -29,7 +29,7 @@ public class Historial {
     @JoinColumn(name = "producto_id", nullable = false)
     private Producto producto;
 
-    @NotNull
+    @NotNull(message = "la fecha no debe ser nula")
     @Column(name = "fecha_compra", nullable = false)
     private LocalDate fechaCompra;
 

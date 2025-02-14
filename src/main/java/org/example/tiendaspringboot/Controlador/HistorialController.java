@@ -44,28 +44,28 @@ public class HistorialController {
     }
 
     @PostMapping
-    public ResponseEntity<Historial> crear(@Valid @RequestBody Historial historial) {
+    public ResponseEntity<String> crear(@Valid @RequestBody Historial historial) {
         try {
-            Historial nuevoHistorial = historialService.guardar(historial);
-            return new ResponseEntity<>(nuevoHistorial, HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            String guardarHistorial= historialService.guardar(historial);
+            return ResponseEntity.ok(guardarHistorial);
+        }catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Historial> actualizar(@PathVariable Integer id, @Valid @RequestBody Historial historial) {
-        return historialService.buscarPorId(id).map(h -> {
-            h.setCliente(historial.getCliente());
-            h.setProducto(historial.getProducto());
-            h.setFechaCompra(historial.getFechaCompra());
-            h.setCantidad(historial.getCantidad());
-            h.setTipo(historial.getTipo());
-            h.setDescripcion(historial.getDescripcion());
-            Historial historialActualizado = historialService.guardar(h);
-            return new ResponseEntity<>(historialActualizado, HttpStatus.OK);
-        }).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Historial> actualizar(@PathVariable Integer id, @Valid @RequestBody Historial historial) {
+//        return historialService.buscarPorId(id).map(h -> {
+//            h.setCliente(historial.getCliente());
+//            h.setProducto(historial.getProducto());
+//            h.setFechaCompra(historial.getFechaCompra());
+//            h.setCantidad(historial.getCantidad());
+//            h.setTipo(historial.getTipo());
+//            h.setDescripcion(historial.getDescripcion());
+//            Historial historialActualizado = historialService.guardar(h);
+//            return new ResponseEntity<>(historialActualizado, HttpStatus.OK);
+//        }).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Integer id) {

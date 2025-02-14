@@ -47,7 +47,6 @@ public class ProductoController {
         Optional<Producto> productoExistente = productoService.buscarPorNombre(producto.getNombre());
 
         if (productoExistente.isPresent()) {
-            // Devuelve un mensaje de error detallado si el nombre ya existe
             Map<String, String> errorResponse = new HashMap<>();
             errorResponse.put("error", "El producto con el nombre '" + producto.getNombre() + "' ya existe.");
             return ResponseEntity.badRequest().body(errorResponse);
