@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.DecimalMin;
 
 import java.math.BigDecimal;
 import java.util.LinkedHashSet;
@@ -31,9 +32,8 @@ public class Producto {
     private String descripcion;
 
     @NotNull
+    @DecimalMin(value = "0.01", message = "El precio debe ser mayor a 0")
     @Column(name = "precio", nullable = false, precision = 10, scale = 2)
-    @NotBlank(message = "El campo precio no puede estar vacío")
-    @Pattern(regexp = "^\\d+(\\.\\d{1,2})?$", message = "El precio debe ser positivo")
     private BigDecimal precio;
 
     @NotNull
