@@ -14,8 +14,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/clientes")
-@CacheConfig(cacheNames = {"cacheCliente"})
+@RequestMapping("/clientes")
+@CacheConfig(cacheNames = {"clientes"})
 public class ClienteController {
 
     private final ClienteService clienteService;
@@ -29,7 +29,6 @@ public class ClienteController {
     public ResponseEntity<List<Cliente>> obtenerTodos() {
         return new ResponseEntity<>(clienteService.obtenerTodos(), HttpStatus.OK);
     }
-
 
     @Cacheable
     @GetMapping("/{id}")
