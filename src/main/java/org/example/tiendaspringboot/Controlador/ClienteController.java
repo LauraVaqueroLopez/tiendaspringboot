@@ -66,6 +66,4 @@ public class ClienteController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
-
 }
