@@ -1,5 +1,6 @@
 package org.example.tiendaspringboot.Modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -41,6 +42,7 @@ public class Producto {
     private Integer stock;
 
     @OneToMany(mappedBy = "producto")
+    @JsonIgnoreProperties({"producto"})
     private Set<Historial> historials = new LinkedHashSet<>();
 
     public void actualizarDescripcionConLiteral() {
