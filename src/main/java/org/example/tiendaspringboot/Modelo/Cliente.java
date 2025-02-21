@@ -47,7 +47,7 @@ public class Cliente {
     @Size(max = 15)
     @Column(name = "telefono", length = 15)
     @NotBlank(message = "el campo telefono no puede estar vacio")
-    @Pattern(regexp = "^[69]\\d{8}$", message ="El telefono debe tener 9 digitos que empiecen por 6 o 9.")
+    @Pattern(regexp = "^[69]{8}$", message ="El telefono debe tener 9 digitos que empiecen por 6 o 9.")
     private String telefono;
 
     @Size(max = 100)
