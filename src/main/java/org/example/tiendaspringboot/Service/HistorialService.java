@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,8 +44,6 @@ public class HistorialService {
         Producto producto = optionalProducto.get();
         Cliente cliente = optionalCliente.get();
 
-        LocalDate fechaActual = LocalDate.now();
-
         List<Historial> historialCliente = historialRepository.findAll();
 
         int cantidadComprada = 0;
@@ -73,33 +69,10 @@ public class HistorialService {
             if (cantidadDevuelta + historial.getCantidad() > cantidadComprada) {
                 return "No puedes devolver más productos de los que compraste";
             }
-
-            boolean devolucionValida = false;
-
-            for (Historial h : historialCliente) {
-                if (h.getCliente().getId().equals(cliente.getId()) && h.getProducto().getId().equals(producto.getId()) &&
-                        "COMPRA".equalsIgnoreCase(h.getTipo())) {
-
-                    LocalDate fechaCompra = h.getFechaCompra();
-                    long diasDiferencia = ChronoUnit.DAYS.between(fechaCompra, fechaActual);
-
-                    if (diasDiferencia <= 30) {
-                        devolucionValida = true;
-                        break;
-                    }
-                }
-            }
-
-            if (!devolucionValida) {
-                return "No puedes devolver un producto después de 30 días de la compra";
-            }
-
             producto.setStock(producto.getStock() + historial.getCantidad());
-
         } else {
             return "Tipo de operación no válida (Debe ser COMPRA o DEVOLUCION)";
         }
-
         historialRepository.save(historial);
         productosRepository.save(producto);
 
