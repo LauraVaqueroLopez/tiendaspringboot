@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +51,7 @@ public class HistorialService {
         int cantidadDevuelta = 0;
 
         for (Historial h : historialCliente) {
+            h.getFechaCompra().plusDays(30).isAfter(LocalDate.now());
             if (h.getCliente().getId().equals(cliente.getId()) && h.getProducto().getId().equals(producto.getId())) {
                 if ("COMPRA".equalsIgnoreCase(h.getTipo())) {
                     cantidadComprada += h.getCantidad();
